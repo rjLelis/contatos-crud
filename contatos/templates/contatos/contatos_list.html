@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contatos</title>
+
+    <style>
+        .contatos {
+            border: 1px solid black;
+            margin: 5px 0;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contatos</h1>
+    <a href="{% url 'contatos:redirect' 0 %}">Criar contato</a>
+    {% for contato in contatos %}
+        <div class='contatos'>
+            <p>{{ contato.nome }}</p>
+            <p>{{ contato.telefone }}</p>
+            <p>{{ contato.email }}</p>
+            <p>{{ contato.data_nascimento|date:'d/m/Y' }}</p>
+            <a href="{% url 'contatos:redirect' contato.id %}">Editar</a>
+            <a href="{% url 'contatos:delete' contato.id %}">Deletar</a>
+        </div>
+    {% endfor %}
+</body>
+</html>
